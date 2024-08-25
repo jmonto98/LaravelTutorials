@@ -13,11 +13,13 @@
                     @if ($viewData["product"]["price"] > 100)
                     <span style="color: red;">{{ $viewData["product"]["name"] }}</span>
                     @else
-                        {{ $viewData["product"]["name"] }}
+                    {{ $viewData["product"]["name"] }}
                     @endif
                 </h5>
-                <p class="card-text">{{ $viewData["product"]["description"] }}</p>
                 <p class="card-text text-red">{{ $viewData["product"]["price"] }}</p>
+                @foreach($viewData["product"]->comments as $comment)
+                - {{ $comment->getDescription() }}<br />
+                @endforeach
             </div>
         </div>
     </div>
