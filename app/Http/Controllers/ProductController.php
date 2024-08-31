@@ -46,7 +46,7 @@ class ProductController extends Controller
         return view('product.create')->with('viewData', $viewData);
     }
 
-    public function save(Request $request): \Illuminate\Http\RedirectResponse
+    public function save(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -55,7 +55,11 @@ class ProductController extends Controller
 
         Product::create($request->only(['name', 'price']));
 
-        return back();
+        $viewData = [];
+        $viewData['tittle'] = 'Product Created';
+        $viewData['message'] = 'The product was created successfully';
+
+        return view('components.message')->with('viewData', $viewData);
         //here will be the code to call the model and save it to the database
     }
 }
