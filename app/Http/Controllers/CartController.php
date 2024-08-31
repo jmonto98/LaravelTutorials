@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use App\Models\Product;
 
 class CartController extends Controller
 {
     public function index(Request $request): View
     {
         $products = [];
-        $products=Product::all(); //this simulates the database
-  
+        $products = Product::all(); //this simulates the database
+
         $cartProducts = [];
         $cartProductData = $request->session()->get('cart_product_data'); //we get the products stored in session
         if ($cartProductData) {
